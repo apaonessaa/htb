@@ -118,6 +118,8 @@ Below is the Python script built for:
 2. **Crafting the shellcode**
 3. **Exploitation**
 
+Using the *pwntools* and *argparse* libraries.
+
 ```python
 
 #!/usr/bin/env python3
@@ -237,6 +239,19 @@ With **DEBUG** mode it is possible to see:
 Finally, the **flag** is captured remotely.
 
 ![Remote Exploitation](./img/remote.png)
+
+<style>
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+</style>
+
+**Flag**: <label class="unselectable">HT8{wr1t1ng_sh311c0d3_1s_sO_cO0l}</label>
 
 GG :3
 

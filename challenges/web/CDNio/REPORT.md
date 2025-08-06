@@ -1,6 +1,11 @@
 # CDNio
 
-Register and user:
+- **Challenge**: [https://app.hackthebox.com/challenges/CDNio](https://app.hackthebox.com/challenges/CDNio)
+- **Category**: Web
+- **Level**: Easy
+- **Author**: dhmosfunk
+
+Register:
 
 ![register](./img/register.png)
 
