@@ -2,12 +2,12 @@
 
 ![code](./images/Code.png)
 
-Target: **10.10.11.62**
+Target: **10.x.x.x**
 
 ## Reconnaissance
 
 ```bash
-$ nmap -sS -sV -sC 10.10.11.62
+$ nmap -sS -sV -sC 10.x.x.x
 ```
 
 ![nmap](./images/nmap.png)
@@ -21,7 +21,7 @@ Results:
 
 > [Gunicorn](https://gunicorn.org) is a Python WSGI HTTP Server for UNIX.
 
-Visiting http://10.10.11.62:5000/ reveals a Python code editor for writing and running code in the browser.
+Visiting http://10.x.x.x:5000/ reveals a Python code editor for writing and running code in the browser.
 
 ![web](./images/homepage.png)
 

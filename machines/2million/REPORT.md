@@ -1,9 +1,9 @@
 # TwoMillion
 
-Target: 10.10.11.221
+Target: 10.x.x.x
 
 ```
-$ nmap -sC -sV -oN nmap/top1000 10.10.11.221
+$ nmap -sC -sV -oN nmap/top1000 10.x.x.x
 ```
 
 Results:
@@ -15,7 +15,7 @@ Results:
 ```
 $ sudo nano /etc/hosts
 
-10.10.11.221    2million.htb
+10.x.x.x    2million.htb
 ```
 
 ```
@@ -434,16 +434,16 @@ DB_USERNAME=admin
 DB_PASSWORD=SuperDuperPass123
 ```
 
-Try SSH access as `admin@10.10.11.221:SuperDuperPass123`.
+Try SSH access as `admin@10.x.x.x:SuperDuperPass123`.
 
 ```
-$ ssh admin@10.10.11.221
-The authenticity of host '10.10.11.221 (10.10.11.221)' can't be established.
+$ ssh admin@10.x.x.x
+The authenticity of host '10.x.x.x (10.x.x.x)' can't be established.
 ED25519 key fingerprint is SHA256:TgNhCKF6jUX7MG8TC01/MUj/+u0EBasUVsdSQMHdyfY.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '10.10.11.221' (ED25519) to the list of known hosts.
-admin@10.10.11.221's password: 
+Warning: Permanently added '10.x.x.x' (ED25519) to the list of known hosts.
+admin@10.x.x.x's password: 
 Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.70-051570-generic x86_64)
 
  * Documentation:  https://help.ubuntu.com
@@ -454,7 +454,7 @@ Welcome to Ubuntu 22.04.2 LTS (GNU/Linux 5.15.70-051570-generic x86_64)
 
   System load:  0.0               Processes:             225
   Usage of /:   82.6% of 4.82GB   Users logged in:       1
-  Memory usage: 9%                IPv4 address for eth0: 10.10.11.221
+  Memory usage: 9%                IPv4 address for eth0: 10.x.x.x
   Swap usage:   0%
 
 

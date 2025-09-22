@@ -1,0 +1,9 @@
+Administrator
+ca_svc
+Guest
+krbtgt
+michael
+oscar
+rose
+ryan
+sql_svc

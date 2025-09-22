@@ -2,11 +2,11 @@
 
 ![linkvortex](./images/LinkVortex.png)
 
-Target: 10.10.11.47
+Target: 10.x.x.x
 
 Port scanning:
 ```
-$ nmap -sC -sV -oA nmap/top1000 10.10.11.47
+$ nmap -sC -sV -oA nmap/top1000 10.x.x.x
 ```
 
 Results:
@@ -24,7 +24,7 @@ kali $ vim /etc/hosts
 Append to `/etc/hosts`:
 
 ```
-10.10.11.47     linkvortex.htb
+10.x.x.x     linkvortex.htb
 ```
 
 The web app uses the `ghost` CMS version `5.58`.
@@ -66,7 +66,7 @@ Result:
 Updates the local dns.
 
 ```
-10.10.11.47     linkvortex.htb dev.linkvortex.htb
+10.x.x.x     linkvortex.htb dev.linkvortex.htb
 ```
 
 Visit `http://dev.linkvortex.htb`.
@@ -281,7 +281,7 @@ File content:
 
 Si sono effettuati altri tentativi per accedere ad una shell remota.
 
-- bob@10.10.11.47:fibber-talented-worth
+- bob@10.x.x.x:fibber-talented-worth
 
 Accesso ottenuto.
 

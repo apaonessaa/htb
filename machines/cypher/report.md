@@ -4,12 +4,12 @@
 
 ![machine info](./images/Cypher.png)
 
-Target: **10.10.11.57**
+Target: **10.x.x.x**
 
 ## Reconnaissance
 
 ```bash
-$ nmap -sV -sC 10.10.11.57
+$ nmap -sV -sC 10.x.x.x
 ```
 
 ![nmap](./images/nmap.png)
@@ -21,7 +21,7 @@ $ nmap -sV -sC 10.10.11.57
 First, it is necessary to update the local DNS in `/etc/hosts` by adding a new record:
 
 ```bash
-$ sudo echo '10.10.11.57  cypher.htb' >> /etc/hosts
+$ sudo echo '10.x.x.x  cypher.htb' >> /etc/hosts
 ```
 
 Visiting `http://cypher.htb`, the following result is obtained:
