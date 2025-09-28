@@ -2,8 +2,6 @@
 
 ![code](./images/Code.png)
 
-Target: **10.x.x.x**
-
 ## Reconnaissance
 
 ```bash

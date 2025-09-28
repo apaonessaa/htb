@@ -10,8 +10,6 @@ As is common in real life Windows pentests, you will start the Administrator box
 
 ```
 
-Target: 10.x.x.x
-
 ## Enumerazione iniziale
 
 ```bash

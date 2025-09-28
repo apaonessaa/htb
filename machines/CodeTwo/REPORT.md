@@ -4,8 +4,6 @@
 
 ## Reconnaissance
 
-Target Machine: 10.x.x.x
-
 Si inizia con una scansione **NMAP**.
 
 ![nmap](./img/1-nmap.png)
