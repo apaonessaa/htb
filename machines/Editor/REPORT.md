@@ -107,7 +107,7 @@ Ed anche l'URL **http://editor.htb:8080** che reindirizza a **http://editor.htb:
 ![02](./img/02.png)
 
 **Xwiki** permette di accedere con delle credenziali.
-
+ 
 ![03](./img/03.png)
 
 Viene anche evidenziato che si sta usando la versione **15.10.8** di **Xwiki**.
