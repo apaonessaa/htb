@@ -240,7 +240,7 @@ Finally, the **flag** is captured remotely.
 
 ![Remote Exploitation](./img/remote.png)
 
-**Flag**: HT8{wr1t1ng_sh311c0d3_1s_sO_cO0l}
+**Flag**: HT8{meow_meow_meowww_meow}
 
 GG :3
 
