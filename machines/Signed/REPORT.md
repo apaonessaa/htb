@@ -206,15 +206,11 @@ Sono necessari:
 Si ottiene il SID di **mssqlsvc** e **SIGNED\IT**.
 ```text
 SQL (SIGNED\mssqlsvc  guest@master)> SELECT SUSER_SID('SIGNED\mssqlsvc')
-```
-```text
 b'0105000000000005150000005b7bb0f398aa2245ad4a1ca44f040000'   
 ```
 
 ```text
 SQL (SIGNED\mssqlsvc  guest@master)> SELECT SUSER_SID('SIGNED\IT')
-```
-```text 
 b'0105000000000005150000005b7bb0f398aa2245ad4a1ca451040000'
 ```
 
