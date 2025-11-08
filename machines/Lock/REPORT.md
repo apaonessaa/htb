@@ -222,7 +222,7 @@ Repositories:
 - ellen.freeman/website
 ```
 
-## **Deep Information Gathering via Gitea**
+## **Clone the website repository**
 
 Si può interagire con l'API di Gitea anche tramite **Swagger**.
 
@@ -253,6 +253,8 @@ CI/CD integration is now active - changes to the repository will automatically b
 Quindi, è presente un **CI/CD system** che con l'aggiornamento del repository, aggiorna anche il web server.
 
 Si fa un tentativo.
+
+### Repository update
 
 `website/update.html`
 ```html
